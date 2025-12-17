@@ -8,7 +8,6 @@
                 📧 Email ID (login ke liye)
                 📱 Contact number 
                 🔒 App lock password (secure / encrypted form)
-                📅 Account banne ki date
         
       🔗 Relationship
             
@@ -19,7 +18,6 @@
         
             💳 User ke bank accounts store karne ke liye
             👉 Is table me store hoga
-                👤 Kaunsa user owner hai
                 🏦 Bank ka naam
                 🔢 Account number
                 💰 Current balance
@@ -39,11 +37,12 @@
                 🗂️ Category (Food, Rent, Travel, EMI, etc.)
                 📆 Date & Time
                 📝 Short note (optional)
+
                 📈 Is table se tum nikaal sakte ho
-                📅 Daily / Monthly expense
-                🗂️ Category-wise expense
-                🏦 Bank-wise expense
-    
+                    📅 Daily / Monthly/ yearly expense
+                    🗂️ Category-wise expense
+                    🏦 Bank-wise expense
+        
       💳 4️⃣ Loan Accounts Table
         
             📄 Loan related details ke liye
@@ -52,7 +51,7 @@
                 🏠 Loan type (Home, Education, Personal,business)
                 💰 Total loan amount
                 📊 Interest rate
-                ⏳ Tenure (months)
+                ⏳ Tenure (months/year/day )
                 💸 EMI amount
                 ✅ Loan status (Active / Closed)
                 🔮 Future scope
