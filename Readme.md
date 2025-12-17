@@ -1,38 +1,88 @@
-# Personal Expense Tracker
+# 💸 Personal Expense Tracker – Web Application
 
-A full-stack application for tracking personal expenses and income.
+A secure, business-focused Personal Expense Tracker designed for high-transaction users, small businesses, and service centers.
+This application goes beyond basic daily expense tracking by providing multi-account management, loan analytics, time-based reports, and layered security.
 
-## Project Structure
+## 📌 Project Overview
 
-```
-Personal_Expense_Tracker/
-├── backend/           # Java Spring Boot backend
-│   ├── src/
-│   │   └── main/java/com/PersonalExpenseTracker/
-│   │       ├── App.java
-│   │       ├── UserProfile.java
-│   │       └── DatabaseTest.java
-│   └── pom.xml
-├── frontend/          # React frontend with Vite
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── main.jsx
-│   ├── index.html
-│   └── package.json
-└── database.md
-```
+The Personal Expense Tracker helps users manage and analyze expenses across multiple linked accounts such as bank, cash, wallet, and loans.
+It simulates a UPI-like transaction environment (without using real banking APIs) and provides accurate expense analytics based on date, time, and account type.
 
-## Prerequisites
+This project is built to demonstrate real-world backend logic, security concepts, and data analytics skills.
 
-- Java 8 or higher
-- MySQL Server
-- Node.js and npm
-- Maven
+## 🏠 Main Features
 
-## Setup Instructions
+### 🔹 Home Page
 
-### 1. Database Setup
+- View linked bank/demo accounts by contact number
+  - Secure account access using encrypted PIN verification
+  - Expense dashboard with:
+    - 📅 Year-wise analysis
+    - 📆 Month-wise analysis
+    - 🕒 Day-wise analysis
+
+- Automatic calculation of expenses based on user selection
+- Global search across all transactions
+
+- Loan transaction overview:
+  - Loan-linked account
+    - Total loan expense tracking
+    - Overall loan transaction calculation
+
+### 🔹 Create Account
+
+- User registration with:
+  - Username
+  - Contact number (linked to demo bank accounts)
+  - Gmail
+  - Multi-layer encryption:
+    - App lock PIN
+    - Optional fingerprint simulation
+    - SIM-based restriction:
+      - Only SIM-inserted users can create accounts (conceptual validation)
+
+### 🔹 Login
+
+- Secure login using:
+  - Username
+  - Contact number
+  - Encrypted credential verification
+
+## 🌟 Unique Selling Points (USP)
+
+🟢 USP 1: High-Transaction Business-Focused Design
+🟢 USP 2: Simulated UPI Environment (No Real APIs)
+🟢 USP 3: Multi-Account Expense Tracking
+🟢 USP 4: Loan & EMI Expense Analytics
+🟢 USP 5: Time-Based Smart Reports
+🟢 USP 6: Layered Security Model
+
+## 🛠️ Tech Stack
+
+### Backend
+
+- Core Java
+- Spring Boot
+
+### Frontend
+
+- React.js
+
+### Database
+
+- MySQL
+
+## 🔧 Setup and Running Instructions
+
+### Prerequisites
+
+Before running the application, make sure you have these installed:
+1. **Java 8 or higher**
+2. **MySQL Server** (running with root user and password "Coder@1122")
+3. **Node.js and npm**
+4. **Maven**
+
+### Database Setup
 
 1. Install and start MySQL Server
 2. Create a MySQL user with the following credentials:
@@ -40,7 +90,7 @@ Personal_Expense_Tracker/
    - Password: `Coder@1122`
    - Or update the credentials in the Java files if you prefer different ones
 
-### 2. Backend Setup
+### Running the Backend
 
 1. Navigate to the backend directory:
    ```
@@ -52,12 +102,12 @@ Personal_Expense_Tracker/
    mvn clean install
    ```
 
-3. Run the database initialization:
+3. Run the user profile management system:
    ```
-   mvn exec:java -Dexec.mainClass="com.PersonalExpenseTracker.UserProfile"
+   mvn exec:java -D"exec.mainClass"="com.PersonalExpenseTracker.UserProfile"
    ```
 
-### 3. Frontend Setup
+### Running the Frontend
 
 1. Navigate to the frontend directory:
    ```
@@ -74,63 +124,30 @@ Personal_Expense_Tracker/
    npm run dev
    ```
 
-## Running the Application
-
-### Backend
-
-To run the backend services:
-
-1. Database test:
-   ```
-   mvn exec:java -Dexec.mainClass="com.PersonalExpenseTracker.DatabaseTest"
-   ```
-
-2. User profile management:
-   ```
-   mvn exec:java -Dexec.mainClass="com.PersonalExpenseTracker.UserProfile"
-   ```
-
-3. Application check:
-   ```
-   mvn exec:java -Dexec.mainClass="com.PersonalExpenseTracker.App"
-   ```
-
-### Frontend
-
-To start the frontend development server:
-```
-npm run dev
-```
-
 The application will be available at `http://localhost:5173`
 
-## Features
+## 🔐 Security Concepts Used
 
-- User registration and login
-- Expense tracking
-- Income tracking
-- Dashboard with financial overview
-- Detailed reports
+- Password hashing & encryption
+- Multi-level authentication
+- Secure database access
+- PIN-based verification logic
 
-## Troubleshooting
+## 🎯 Project Objective
 
-### Common Issues
+To build a real-world inspired expense management system
 
-1. **Database Connection Failed**
-   - Ensure MySQL server is running
-   - Check username and password
-   - Verify MySQL JDBC driver is installed
+To demonstrate:
 
-2. **Port Already in Use**
-   - Change the port in the frontend configuration
+- Backend development skills
+- Secure system design
+- Database modeling
+- Business-level logic handling
 
-3. **Missing Dependencies**
-   - Run `mvn clean install` in the backend
-   - Run `npm install` in the frontend
+## 🚀 Future Enhancements
 
-### Testing Database Connection
-
-Run the DatabaseTest class to verify your database connection:
-```
-mvn exec:java -Dexec.mainClass="com.PersonalExpenseTracker.DatabaseTest"
-```
+- Real UPI API integration (sandbox)
+- Advanced charts & analytics
+- Export reports (PDF / Excel)
+- Mobile app version
+- AI-based expense insights
