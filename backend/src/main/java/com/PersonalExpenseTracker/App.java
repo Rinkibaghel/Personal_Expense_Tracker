@@ -12,7 +12,7 @@ public class App {
     static final String DB_URL = "jdbc:mysql://localhost:3306/expense_tracker";
     static final String USER = "root";
     static final String PASS = "Coder@1122";
-    static final String QUERY = "SELECT id, first_name, last_name FROM employees";
+    static final String QUERY = "SELECT COUNT(*) AS count FROM UserProfile";
 
     public static void main(String[] args) {
         // Use try-with-resources to ensure resources are closed automatically
@@ -23,19 +23,24 @@ public class App {
             System.out.println("Connection successful!");
 
             // Process the result set
-            while (rs.next()) {
-                // Retrieve data by column name or index
-                int id = rs.getInt("id");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-
-                // Print the results
-                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName);
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                System.out.println("Number of users in the database: " + count);
+                
+                if (count == 0) {
+                    System.out.println("No users found. Please register a user first.");
+                } else {
+                    System.out.println("Database is properly initialized with " + count + " user(s).");
+                }
             }
         } catch (SQLException e) {
-            System.err.println("Database connection or query failed: ");
+            System.err.println("Database connection or query failed: " + e.getMessage());
+            System.err.println("Possible causes:");
+            System.err.println("1. MySQL server is not running");
+            System.err.println("2. Database 'expense_tracker' does not exist yet");
+            System.err.println("3. Incorrect username/password");
+            System.err.println("4. MySQL JDBC driver not found");
             e.printStackTrace();
         }
     }
 }
-
