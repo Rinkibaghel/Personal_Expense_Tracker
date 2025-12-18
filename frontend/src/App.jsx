@@ -3,9 +3,24 @@ import './App.css'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showSignup, setShowSignup] = useState(false)
   const [activeTab, setActiveTab] = useState('dashboard')
   const [expenses, setExpenses] = useState([])
   const [income, setIncome] = useState([])
+
+  // Form data states
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const [signupData, setSignupData] = useState({
+    username: '',
+    email: '',
+    contact: '',
+    password: '',
+    confirmPassword: ''
+  })
 
   // Mock data for demonstration
   const mockExpenses = [
@@ -20,14 +35,44 @@ function App() {
   ]
 
   const handleLogin = () => {
+    // In a real app, you would validate credentials with the backend
     setIsLoggedIn(true)
     setExpenses(mockExpenses)
     setIncome(mockIncome)
   }
 
+  const handleSignup = () => {
+    // In a real app, you would send signup data to the backend
+    if (signupData.password !== signupData.confirmPassword) {
+      alert("Passwords don't match!")
+      return
+    }
+    
+    // Simulate successful signup
+    console.log("Signup data:", signupData)
+    alert("Account created successfully! Please login.")
+    setShowSignup(false)
+  }
+
   const handleLogout = () => {
     setIsLoggedIn(false)
     setActiveTab('dashboard')
+  }
+
+  const handleLoginInputChange = (e) => {
+    const { name, value } = e.target
+    setLoginData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSignupInputChange = (e) => {
+    const { name, value } = e.target
+    setSignupData(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
   const getTotalExpenses = () => {
@@ -42,21 +87,97 @@ function App() {
     return getTotalIncome() - getTotalExpenses()
   }
 
-  if (!isLoggedIn) {
+  // Show signup form
+  if (showSignup) {
     return (
-      <div className="login-container">
-        <div className="login-form">
-          <h2>Personal Expense Tracker</h2>
+      <div className="auth-container">
+        <div className="auth-form">
+          <h2>Create Account</h2>
+          <div className="form-group">
+            <label>Username:</label>
+            <input 
+              type="text" 
+              name="username"
+              value={signupData.username}
+              onChange={handleSignupInputChange}
+              placeholder="Enter your username" 
+            />
+          </div>
           <div className="form-group">
             <label>Email:</label>
-            <input type="email" placeholder="Enter your email" />
+            <input 
+              type="email" 
+              name="email"
+              value={signupData.email}
+              onChange={handleSignupInputChange}
+              placeholder="Enter your email" 
+            />
+          </div>
+          <div className="form-group">
+            <label>Contact Number:</label>
+            <input 
+              type="tel" 
+              name="contact"
+              value={signupData.contact}
+              onChange={handleSignupInputChange}
+              placeholder="Enter your contact number" 
+            />
           </div>
           <div className="form-group">
             <label>Password:</label>
-            <input type="password" placeholder="Enter your password" />
+            <input 
+              type="password" 
+              name="password"
+              value={signupData.password}
+              onChange={handleSignupInputChange}
+              placeholder="Enter your password" 
+            />
+          </div>
+          <div className="form-group">
+            <label>Confirm Password:</label>
+            <input 
+              type="password" 
+              name="confirmPassword"
+              value={signupData.confirmPassword}
+              onChange={handleSignupInputChange}
+              placeholder="Confirm your password" 
+            />
+          </div>
+          <button onClick={handleSignup}>Sign Up</button>
+          <p>Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); setShowSignup(false); }}>Login</a></p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show login form
+  if (!isLoggedIn) {
+    return (
+      <div className="auth-container">
+        <div className="auth-form">
+          <h2>Personal Expense Tracker</h2>
+          <div className="form-group">
+            <label>Email:</label>
+            <input 
+              type="email" 
+              name="email"
+              value={loginData.email}
+              onChange={handleLoginInputChange}
+              placeholder="Enter your email" 
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input 
+              type="password" 
+              name="password"
+              value={loginData.password}
+              onChange={handleLoginInputChange}
+              placeholder="Enter your password" 
+            />
           </div>
           <button onClick={handleLogin}>Login</button>
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
+          <p>Don't have an account? <a href="#" onClick={(e) => { e.preventDefault(); setShowSignup(true); }}>Sign Up</a></p>
         </div>
       </div>
     )
